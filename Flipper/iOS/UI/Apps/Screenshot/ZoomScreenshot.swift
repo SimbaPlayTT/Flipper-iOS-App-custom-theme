@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct ZoomScreenshot: View {
+    @EnvironmentObject var theme: AppTheme
     let screenshot: URL
     @Binding var currentIndex: Int
     let onSwipeRight: () -> Void

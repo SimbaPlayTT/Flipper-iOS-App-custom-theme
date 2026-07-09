@@ -3,6 +3,7 @@ import Collections
 import SwiftUI
 
 struct DeviceInfoView: View {
+    @EnvironmentObject var theme: AppTheme
     @EnvironmentObject var device: Device
     @Environment(\.dismiss) private var dismiss
 

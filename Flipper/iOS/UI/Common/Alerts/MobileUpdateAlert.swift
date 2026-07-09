@@ -1,16 +1,24 @@
 import SwiftUI
 
 struct MobileUpdateAlert: View {
+    @EnvironmentObject var theme: AppTheme
+
     @Binding var isPresented: Bool
 
     @Environment(\.openURL) var openURL
 
     var body: some View {
         VStack(spacing: 0) {
-            Image("OutdatedMobile")
-                .resizable()
-                .frame(width: 120, height: 72)
-                .padding(.top, 8)
+            ZStack {
+                Image("OutdatedMobile")
+                    .resizable()
+                Image("OutdatedMobileAccent")
+                    .renderingMode(.template)
+                    .resizable()
+                    .foregroundColor(theme.accent)
+            }
+            .frame(width: 120, height: 72)
+            .padding(.top, 8)
 
             Text("Flipper App Update")
                 .font(.system(size: 14, weight: .bold))

@@ -3,6 +3,8 @@ import Peripheral
 
 extension RemoteControlView {
     struct DeviceScreen<Content: View>: View {
+        @EnvironmentObject var theme: AppTheme
+
         let content: () -> Content
 
         init(@ViewBuilder content: @escaping () -> Content) {
@@ -13,6 +15,7 @@ extension RemoteControlView {
             Image("RemoteScreen")
                 .resizable()
                 .scaledToFit()
+                .foregroundColor(theme.accent)
                 .overlay(
                     GeometryReader { proxy in
                         content()

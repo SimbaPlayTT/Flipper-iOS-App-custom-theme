@@ -59,6 +59,28 @@ public class RemoteFileManager: ObservableObject {
         }
     }
 
+    public func readRaw(
+        at path: Path,
+        progress: @escaping (Double) -> Void
+    ) async throws -> [UInt8] {
+        do {
+            let size = try await storage.size(of: path)
+            guard size > 0 else {
+                progress(1)
+                return []
+            }
+            var bytes: [UInt8] = []
+            for try await next in await storage.read(at: path) {
+                bytes += next
+                progress(Double(bytes.count) / Double(size))
+            }
+            return bytes
+        } catch {
+            logger.error("read raw: \(error)")
+            throw Error.unknown(.init(describing: error))
+        }
+    }
+
     public func writeFile(_ content: String, at path: Path) async throws {
         do {
             try await storage.write(at: path, string: content).drain()
@@ -70,7 +92,11 @@ public class RemoteFileManager: ObservableObject {
 
     // MARK: Import
 
-    public func importFile(url: URL, at path: Path) async throws {
+    public func importFile(
+        url: URL,
+        at path: Path,
+        progress: @escaping (Double) -> Void = { _ in }
+    ) async throws {
         do {
             guard let name = url.pathComponents.last else {
                 logger.error("import file: invalid url \(url)")
@@ -86,7 +112,7 @@ public class RemoteFileManager: ObservableObject {
 
             let path = path.appending(name)
             let bytes = try [UInt8](Data(contentsOf: url))
-            try await storage.write(at: path, bytes: bytes).drain()
+            try await storage.write(at: path, bytes: bytes, progress: progress)
         } catch {
             logger.error("import file: \(error)")
             throw Error.unknown(.init(describing: error))

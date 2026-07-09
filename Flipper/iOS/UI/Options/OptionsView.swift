@@ -4,6 +4,7 @@ import Notifications
 import SwiftUI
 
 struct OptionsView: View {
+    @EnvironmentObject var theme: AppTheme
     @EnvironmentObject var device: Device
     @EnvironmentObject var archive: ArchiveModel
     @Environment(\.dismiss) private var dismiss
@@ -28,6 +29,7 @@ struct OptionsView: View {
         case fileManager
         case reportBug
         case infrared
+        case theme
     }
 
     var body: some View {
@@ -64,6 +66,17 @@ struct OptionsView: View {
                 .foregroundColor(isDeviceAvailable ? .accentColor : .gray)
             }
             .disabled(!isDeviceAvailable)
+
+            Section(header: Text("Appearance")) {
+                NavigationLink(value: Destination.theme) {
+                    VStack(alignment: .leading) {
+                        Text("Custom Theme")
+                        Text("Personalize the app's accent color")
+                            .font(.system(size: 12))
+                            .foregroundColor(.black40)
+                    }
+                }
+            }
 
             Section {
                 NotificationsToggle()
@@ -158,6 +171,7 @@ struct OptionsView: View {
             case .fileManager: FileManagerView()
             case .reportBug: ReportBugView()
             case .infrared: InfraredDebugLayout()
+            case .theme: ThemeColorPickerView()
             }
         }
     }
@@ -165,6 +179,7 @@ struct OptionsView: View {
 
 extension OptionsView {
     struct NotificationsToggle: View {
+        @EnvironmentObject var theme: AppTheme
         @EnvironmentObject var notifications: Notifications
         @Environment(\.notifications) var inApp
 

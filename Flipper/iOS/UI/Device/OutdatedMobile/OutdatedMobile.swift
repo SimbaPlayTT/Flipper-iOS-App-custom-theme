@@ -1,12 +1,19 @@
 import SwiftUI
 
 struct OutdatedMobileCard: View {
+    @EnvironmentObject var theme: AppTheme
+
     @Environment(\.openURL) private var openURL
 
     var body: some View {
         Card {
             VStack(spacing: 0) {
-                Image("OutdatedMobile")
+                ZStack {
+                    Image("OutdatedMobile")
+                    Image("OutdatedMobileAccent")
+                        .renderingMode(.template)
+                        .foregroundColor(theme.accent)
+                }
 
                 Text("Outdated Mobile App Version")
                     .font(.system(size: 14, weight: .medium))

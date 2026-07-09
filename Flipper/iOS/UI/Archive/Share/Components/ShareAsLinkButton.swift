@@ -2,6 +2,8 @@ import SwiftUI
 
 extension ShareView {
     struct ShareAsLinkButton: View {
+        @EnvironmentObject var theme: AppTheme
+
         let isTempLink: Bool
         var action: () -> Void
 
@@ -11,6 +13,7 @@ extension ShareView {
             } label: {
                 VStack(spacing: 12) {
                     Image("ShareAsLink")
+                        .foregroundColor(theme.accent)
                     VStack(spacing: 2) {
                         Text("via Secure Link")
                             .font(.system(size: 14, weight: .medium))

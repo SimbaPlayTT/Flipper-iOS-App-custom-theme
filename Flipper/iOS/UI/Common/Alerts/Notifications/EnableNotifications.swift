@@ -2,6 +2,8 @@ import Core
 import SwiftUI
 
 struct EnableNotificationsAlert: View {
+    @EnvironmentObject var theme: AppTheme
+
     @Binding var isPresented: Bool
 
     var onEnable: () -> Void
@@ -9,7 +11,12 @@ struct EnableNotificationsAlert: View {
     var body: some View {
         VStack(spacing: 24) {
             VStack(spacing: 4) {
-                Image("NotificationsAlert")
+                ZStack {
+                    Image("NotificationsAlert")
+                    Image("NotificationsAlertAccent")
+                        .renderingMode(.template)
+                        .foregroundColor(theme.accent)
+                }
 
                 Text("Enable Push Notifications")
                     .font(.system(size: 14, weight: .bold))

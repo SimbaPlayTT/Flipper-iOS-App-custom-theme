@@ -1,13 +1,20 @@
 import SwiftUI
 
 struct FlipperIsBusyAlert: View {
+    @EnvironmentObject var theme: AppTheme
+
     @Binding var isPresented: Bool
     let goToRemote: () -> Void
 
     var body: some View {
         VStack(spacing: 24) {
-            Image("FlipperBusy")
-                .padding(.top, 17)
+            ZStack {
+                Image("FlipperBusy")
+                Image("FlipperBusyAccent")
+                    .renderingMode(.template)
+                    .foregroundColor(theme.accent)
+            }
+            .padding(.top, 17)
 
             VStack(spacing: 4) {
                 Text("Flipper is Busy")

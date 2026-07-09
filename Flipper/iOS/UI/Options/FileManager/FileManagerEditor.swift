@@ -5,6 +5,7 @@ import SwiftUI
 
 extension FileManagerView {
     struct FileManagerEditor: View {
+        @EnvironmentObject var theme: AppTheme
         let path: Peripheral.Path
 
         @EnvironmentObject var fileManager: RemoteFileManager

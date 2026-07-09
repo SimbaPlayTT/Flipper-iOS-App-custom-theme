@@ -15,7 +15,7 @@
       "location" : "https://github.com/swiftstack/dcompression.git",
       "state" : {
         "branch" : "dev",
-        "revision" : "9bb4eda095d9e9d962bcf3618993614f417c95c4"
+        "revision" : "ccf9c504ea9e174dc21c1a44996015cc67b76566"
       }
     },
     {
@@ -78,7 +78,7 @@
       "location" : "https://github.com/swiftstack/radix.git",
       "state" : {
         "branch" : "dev",
-        "revision" : "21246051060c7050e707eb9f4b6796d99e7a1c60"
+        "revision" : "ac69f7966d1b4dd482c20b3946a9d1346cfe4ba8"
       }
     },
     {
@@ -87,7 +87,7 @@
       "location" : "https://github.com/swiftstack/stream.git",
       "state" : {
         "branch" : "dev",
-        "revision" : "67deefcfc7af25a914677ce15b9c42981529419a"
+        "revision" : "8f9c02165c313606a3ec05f1bcbf42b8702841ba"
       }
     },
     {

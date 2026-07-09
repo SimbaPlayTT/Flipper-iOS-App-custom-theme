@@ -1,6 +1,8 @@
 import SwiftUI
 
 struct OutdatedFirmwareAlert: View {
+    @EnvironmentObject var theme: AppTheme
+
     @Environment(\.openURL) private var openURL
     @Binding var isPresented: Bool
 
@@ -8,6 +10,7 @@ struct OutdatedFirmwareAlert: View {
         VStack(spacing: 0) {
             Image("OutdatedFirmware")
                 .resizable()
+                .foregroundColor(theme.accent)
                 .frame(width: 82, height: 82)
                 .padding(.top, 8)
 

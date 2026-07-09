@@ -2,6 +2,7 @@ import Core
 import SwiftUI
 
 struct AppIssueView: View {
+    @EnvironmentObject var theme: AppTheme
     let application: Application
 
     @Environment(\.openURL) var openURL

@@ -1,9 +1,16 @@
 import SwiftUI
 
 struct NothingFoundView: View {
+    @EnvironmentObject var theme: AppTheme
+
     var body: some View {
         VStack(spacing: 12) {
-            Image("NothingFound")
+            ZStack {
+                Image("NothingFound")
+                Image("NothingFoundAccent")
+                    .renderingMode(.template)
+                    .foregroundColor(theme.accent)
+            }
 
             Text("Nothing Found")
                 .font(.system(size: 16, weight: .bold))

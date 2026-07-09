@@ -2,6 +2,7 @@ import Core
 import SwiftUI
 
 struct PingView: View {
+    @EnvironmentObject var theme: AppTheme
     // next step
     @StateObject var pingTest = Dependencies.shared.pingTest
     @Environment(\.dismiss) private var dismiss

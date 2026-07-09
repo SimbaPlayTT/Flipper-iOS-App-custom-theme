@@ -2,6 +2,7 @@ import Core
 import SwiftUI
 
 struct DeviceHeader: View {
+    @EnvironmentObject var theme: AppTheme
     var device: Flipper?
 
     var body: some View {

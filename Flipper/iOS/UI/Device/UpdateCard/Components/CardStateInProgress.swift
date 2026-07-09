@@ -2,8 +2,11 @@ import SwiftUI
 
 extension DeviceUpdateCard {
     struct CardStateInProgress: View {
+        @EnvironmentObject var theme: AppTheme
+
         var body: some View {
             Image("UpdateStarted")
+                .foregroundColor(theme.accent)
                 .padding(.top, 12)
                 .padding(.horizontal, 12)
 

@@ -2,6 +2,7 @@ import Core
 import SwiftUI
 
 struct StressTestView: View {
+    @EnvironmentObject var theme: AppTheme
     // next step
     @StateObject var stressTest = Dependencies.shared.stressTest
     @Environment(\.dismiss) private var dismiss

@@ -2,6 +2,7 @@ import Core
 import SwiftUI
 
 struct ReportBugView: View {
+    @EnvironmentObject var theme: AppTheme
     @Environment(\.dismiss) private var dismiss
 
     @State var status: Status = .edit

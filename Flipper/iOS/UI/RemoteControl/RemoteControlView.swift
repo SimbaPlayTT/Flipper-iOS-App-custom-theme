@@ -5,6 +5,7 @@ import SwiftUI
 
 struct RemoteControlView: View {
     @EnvironmentObject var device: Device
+    @EnvironmentObject var theme: AppTheme
     @Environment(\.scenePhase) private var scenePhase
     @Environment(\.dismiss) private var dismiss
 
@@ -119,9 +120,15 @@ struct RemoteControlView: View {
 
                         Group {
                             if device.status == .disconnected {
-                                Image("RemoteScreenNotConnected")
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fit)
+                                ZStack {
+                                    Image("RemoteScreenNotConnected")
+                                        .resizable()
+                                    Image("RemoteScreenNotConnectedAccent")
+                                        .renderingMode(.template)
+                                        .resizable()
+                                        .foregroundColor(theme.accent)
+                                }
+                                .aspectRatio(contentMode: .fit)
                             } else {
                                 DeviceScreen {
                                     if let uiImage = uiImage {
@@ -271,10 +278,24 @@ struct RemoteControlView: View {
 
 private extension UIImage {
     convenience init?(frame: ScreenFrame) {
+        let background = PixelColor(uiColor: AppTheme.shared.accentUIColor)
         self.init(
-            pixels: frame.pixels.map { $0 ? .black : .orange },
+            pixels: frame.pixels.map { $0 ? .black : background },
             width: 128,
             height: 64
+        )
+    }
+}
+
+private extension PixelColor {
+    init(uiColor: UIColor) {
+        var r: CGFloat = 0, g: CGFloat = 0, b: CGFloat = 0, a: CGFloat = 0
+        uiColor.getRed(&r, green: &g, blue: &b, alpha: &a)
+        self.init(
+            a: UInt8(clamping: Int((a * 255).rounded())),
+            r: UInt8(clamping: Int((r * 255).rounded())),
+            g: UInt8(clamping: Int((g * 255).rounded())),
+            b: UInt8(clamping: Int((b * 255).rounded()))
         )
     }
 }

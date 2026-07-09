@@ -1,12 +1,15 @@
 import SwiftUI
 
 struct OutdatedFirmwareCard: View {
+    @EnvironmentObject var theme: AppTheme
+
     @Environment(\.openURL) private var openURL
 
     var body: some View {
         Card {
             VStack(spacing: 0) {
                 Image("OutdatedFirmware")
+                    .foregroundColor(theme.accent)
 
                 Text("Outdated Firmware Version")
                     .font(.system(size: 14, weight: .medium))

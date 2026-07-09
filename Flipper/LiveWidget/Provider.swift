@@ -54,6 +54,6 @@ struct Provider: AppIntentTimelineProvider {
 
 extension UserDefaults {
     static var group: UserDefaults {
-        .init(suiteName: "group.com.flipperdevices.main")!
+        .init(suiteName: "group.com.simba.flipperct")!
     }
 }

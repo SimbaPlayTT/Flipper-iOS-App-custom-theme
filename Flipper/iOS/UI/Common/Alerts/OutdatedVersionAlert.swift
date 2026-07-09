@@ -1,12 +1,15 @@
 import SwiftUI
 
 struct OutdatedVersionAlert: View {
+    @EnvironmentObject var theme: AppTheme
+
     @Binding var isPresented: Bool
 
     var body: some View {
         VStack(spacing: 0) {
             Image("OutdatedFirmware")
                 .resizable()
+                .foregroundColor(theme.accent)
                 .frame(width: 82, height: 82)
                 .padding(.top, 8)
 

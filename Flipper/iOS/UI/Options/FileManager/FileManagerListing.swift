@@ -16,6 +16,8 @@ extension FileManagerView {
         @State private var elements: [Element] = []
         @State private var error: String?
         @State private var isBusy = false
+        @State private var uploadProgress: Double?
+        @State private var downloadProgress: Double?
 
         @State private var name = ""
         @State private var isNewFile = false
@@ -30,11 +32,25 @@ extension FileManagerView {
         @State private var isFileImporterPresented = false
 
         var body: some View {
-            VStack {
-                if isBusy {
+            VStack(spacing: 0) {
+                if let uploadProgress {
+                    TransferProgressBar(
+                        title: "Uploading...",
+                        progress: uploadProgress)
+                } else if let downloadProgress {
+                    TransferProgressBar(
+                        title: "Downloading...",
+                        progress: downloadProgress)
+                }
+
+                if isBusy && elements.isEmpty && error == nil {
+                    Spacer()
                     ProgressView()
+                    Spacer()
                 } else if let error = error {
+                    Spacer()
                     Text(error)
+                    Spacer()
                 } else {
                     List {
                         if !path.isEmpty {
@@ -210,9 +226,11 @@ extension FileManagerView {
         }
 
         func importFile(_ url: URL) async {
+            uploadProgress = 0
+            defer { uploadProgress = nil }
             do {
-                try await showingProgress {
-                    try await fileManager.importFile(url: url, at: path)
+                try await fileManager.importFile(url: url, at: path) { progress in
+                    uploadProgress = progress
                 }
                 await list()
             } catch {
@@ -221,11 +239,14 @@ extension FileManagerView {
         }
 
         func downloadFile(_ file: File) async {
-            isBusy = true
-            defer { isBusy = false }
+            downloadProgress = 0
+            defer { downloadProgress = nil }
             do {
                 let bytes = try await fileManager.readRaw(
-                    at: path.appending(file.name))
+                    at: path.appending(file.name)
+                ) { progress in
+                    downloadProgress = progress
+                }
                 let url = try FileManager.default.createTempFile(
                     name: file.name,
                     data: .init(bytes))
@@ -272,6 +293,44 @@ extension FileManagerView.FileManagerListing {
         var body: some View {
             Image(systemName: "icloud.and.arrow.down")
                 .frame(width: 20, height: 20)
+        }
+    }
+
+    struct TransferProgressBar: View {
+        @EnvironmentObject var theme: AppTheme
+
+        let title: String
+        let progress: Double
+
+        var body: some View {
+            VStack(alignment: .leading, spacing: 6) {
+                HStack {
+                    Text(title)
+                        .font(.system(size: 12, weight: .medium))
+                        .foregroundColor(.black40)
+                    Spacer()
+                    Text("\(Int(progress * 100))%")
+                        .font(.system(size: 12, weight: .medium))
+                        .foregroundColor(.black40)
+                }
+
+                GeometryReader { proxy in
+                    ZStack(alignment: .leading) {
+                        Capsule()
+                            .fill(Color.black12)
+                        Capsule()
+                            .fill(theme.accent)
+                            .frame(
+                                width: proxy.size.width *
+                                    min(max(progress, 0), 1))
+                    }
+                }
+                .frame(height: 6)
+            }
+            .padding(.horizontal, 14)
+            .padding(.vertical, 10)
+            .background(Color.groupedBackground)
+            .animation(.linear(duration: 0.15), value: progress)
         }
     }
 }

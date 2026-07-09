@@ -4,6 +4,7 @@ import SwiftUI
 
 extension InfraredView {
     struct InfraredChooseCategory: View {
+        @EnvironmentObject var theme: AppTheme
         @EnvironmentObject private var infraredModel: InfraredModel
 
         @Environment(\.dismiss) private var dismiss

@@ -2,6 +2,8 @@ import Core
 import SwiftUI
 
 struct KeyView: View {
+    @EnvironmentObject var theme: AppTheme
+
     let key: MFKey64
 
     init(_ key: MFKey64) {
@@ -11,6 +13,7 @@ struct KeyView: View {
     var body: some View {
         HStack(spacing: 6) {
             Image("FoundKey")
+                .foregroundColor(theme.accent)
             Text(key.hexValue.uppercased())
                 .foregroundColor(.primary.opacity(0.8))
                 .font(.system(

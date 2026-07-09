@@ -2,6 +2,7 @@ import SwiftUI
 
 extension InfraredEmulateView {
     struct InfraredButton: View {
+        @EnvironmentObject var theme: AppTheme
         let text: String
         let isEmulating: Bool
         let emulateDuration: Int

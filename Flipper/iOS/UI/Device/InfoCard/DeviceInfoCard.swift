@@ -6,6 +6,7 @@ import struct Peripheral.StorageSpace
 
 struct DeviceInfoCard: View {
     @EnvironmentObject var device: Device
+    @EnvironmentObject var theme: AppTheme
 
     var isConnecting: Bool {
         device.status == .connecting
@@ -121,7 +122,12 @@ struct DeviceInfoCard: View {
                     .padding(.bottom, 62)
                 } else if isDisconnected || isNoDevice {
                     VStack(spacing: 2) {
-                        Image("InfoNoDevice")
+                        ZStack {
+                            Image("InfoNoDevice")
+                            Image("InfoNoDeviceAccent")
+                                .renderingMode(.template)
+                                .foregroundColor(theme.accent)
+                        }
                         Text("Connect to Flipper to see device info")
                             .font(.system(size: 14, weight: .medium))
                             .foregroundColor(.black30)

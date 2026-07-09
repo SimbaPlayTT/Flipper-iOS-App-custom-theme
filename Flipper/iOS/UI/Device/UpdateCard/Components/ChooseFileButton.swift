@@ -2,6 +2,7 @@ import Core
 import SwiftUI
 
 struct ChooseFileButton: View {
+    @EnvironmentObject var theme: AppTheme
     var action: () -> Void
 
     var body: some View {

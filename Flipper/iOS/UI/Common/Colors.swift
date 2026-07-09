@@ -23,7 +23,7 @@ public extension Color {
     // MARK: Accent
 
     static var a1: Color {
-        .init(red: 1.0, green: 0.51, blue: 0.0)
+        AppTheme.shared.accent
     }
 
     static var a2: Color {

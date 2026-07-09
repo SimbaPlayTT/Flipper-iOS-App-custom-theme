@@ -2,6 +2,8 @@ import SwiftUI
 
 extension RemoteControlView {
     struct ScreenshotButton: View {
+        @EnvironmentObject var theme: AppTheme
+
         var action: () -> Void
 
         var body: some View {
@@ -10,6 +12,7 @@ extension RemoteControlView {
                     action()
                 } label: {
                     Image("RemoteScreenshot")
+                        .foregroundColor(theme.accent)
                 }
                 Text("Screenshot")
                     .font(.system(size: 12, weight: .medium))

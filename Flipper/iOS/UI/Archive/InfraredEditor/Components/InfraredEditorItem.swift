@@ -4,6 +4,7 @@ import Combine
 
 extension InfraredEditorView {
     struct InfraredEditorItem: View {
+        @EnvironmentObject var theme: AppTheme
         @Binding var text: String
         let onDelete: () -> Void
 

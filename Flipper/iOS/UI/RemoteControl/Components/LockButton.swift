@@ -2,6 +2,8 @@ import SwiftUI
 
 extension RemoteControlView {
     struct LockButton: View {
+        @EnvironmentObject var theme: AppTheme
+
         let isLocked: Bool
         let action: () -> Void
 
@@ -11,6 +13,7 @@ extension RemoteControlView {
                     action()
                 } label: {
                     Image(isLocked ? "RemoteUnlock" : "RemoteLock")
+                        .foregroundColor(theme.accent)
                 }
 
                 ZStack {

@@ -1,6 +1,8 @@
 import SwiftUI
 
 struct AppsOutdatedFlipperAlert: View {
+    @EnvironmentObject var theme: AppTheme
+
     @Binding var isPresented: Bool
 
     @AppStorage(.selectedTab) var selectedTab: TabView.Tab = .device
@@ -19,6 +21,7 @@ struct AppsOutdatedFlipperAlert: View {
     var body: some View {
         VStack(spacing: 24) {
             Image("AppAlertUnsupported")
+                .foregroundColor(theme.accent)
                 .padding(.top, 17)
 
             VStack(spacing: 4) {

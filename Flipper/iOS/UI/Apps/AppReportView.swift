@@ -2,6 +2,7 @@ import Core
 import SwiftUI
 
 struct AppReportView: View {
+    @EnvironmentObject var theme: AppTheme
     let application: Application
 
     @Environment(\.colorScheme) private var colorScheme

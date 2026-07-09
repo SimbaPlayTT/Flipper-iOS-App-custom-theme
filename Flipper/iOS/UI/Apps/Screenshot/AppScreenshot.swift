@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct AppScreenshot: View {
+    @EnvironmentObject var theme: AppTheme
     let url: URL
     let onComplete: (UIImage) -> Void
 

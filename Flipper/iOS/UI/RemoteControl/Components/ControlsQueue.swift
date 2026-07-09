@@ -22,6 +22,8 @@ extension RemoteControlView {
         }
 
         struct ControlImage: View {
+            @EnvironmentObject var theme: AppTheme
+
             let control: Control
 
             var rotation: Double {
@@ -54,6 +56,7 @@ extension RemoteControlView {
                 Image(image)
                     .resizable()
                     .scaledToFit()
+                    .foregroundColor(theme.accent)
                     .rotationEffect(.degrees(rotation))
             }
         }

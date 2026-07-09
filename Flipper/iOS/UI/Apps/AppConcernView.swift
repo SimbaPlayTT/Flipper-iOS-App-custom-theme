@@ -2,6 +2,7 @@ import Core
 import SwiftUI
 
 struct AppConcernView: View {
+    @EnvironmentObject var theme: AppTheme
     @EnvironmentObject var model: Applications
 
     let application: Application

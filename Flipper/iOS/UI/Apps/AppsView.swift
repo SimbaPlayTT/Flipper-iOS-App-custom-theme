@@ -2,6 +2,7 @@ import Core
 import SwiftUI
 
 struct AppsView: View {
+    @EnvironmentObject var theme: AppTheme
     @EnvironmentObject var model: Applications
     @EnvironmentObject var update: UpdateModel
     @EnvironmentObject var router: Router

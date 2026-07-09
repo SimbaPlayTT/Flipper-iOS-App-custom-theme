@@ -41,6 +41,7 @@ struct AppsSegments: View {
 }
 
 struct AppsSegment: View {
+    @EnvironmentObject var theme: AppTheme
     @Binding var selected: AppsSegments.Segment
 
     let id: AppsSegments.Segment

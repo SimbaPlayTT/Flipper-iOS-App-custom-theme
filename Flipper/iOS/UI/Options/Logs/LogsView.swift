@@ -4,6 +4,7 @@ import Logging
 import SwiftUI
 
 struct LogsView: View {
+    @EnvironmentObject var theme: AppTheme
     // next step
     @StateObject var logs: Logs = .init(
         loggerStorage: Dependencies.shared.loggerStorage

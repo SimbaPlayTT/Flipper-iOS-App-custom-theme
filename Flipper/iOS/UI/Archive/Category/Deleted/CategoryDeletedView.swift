@@ -3,6 +3,7 @@ import SwiftUI
 
 extension ArchiveView {
     struct CategoryDeletedView: View {
+        @EnvironmentObject var theme: AppTheme
         @EnvironmentObject var archive: ArchiveModel
         @Environment(\.path) private var path
         @Environment(\.dismiss) private var dismiss

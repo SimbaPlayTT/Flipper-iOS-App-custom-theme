@@ -83,7 +83,7 @@ public struct UserDefault<T> {
 
 public extension UserDefaults {
     static var group: UserDefaults {
-        .init(suiteName: "group.com.flipperdevices.main")!
+        .init(suiteName: "group.com.simba.flipperct")!
     }
 }
 
@@ -107,6 +107,14 @@ public extension UserDefaults {
         case isDevCatalog = "isDevCatalog"
 
         case appsSortOrder = "appsSortOrder"
+
+        case customAccentThemeEnabled = "customAccentThemeEnabled"
+        case customAccentHue = "customAccentHue"
+        case customAccentSaturation = "customAccentSaturation"
+        case customAccentBrightness = "customAccentBrightness"
+        case customDPadAccentHue = "customDPadAccentHue"
+        case spoofShellEnabled = "spoofShellEnabled"
+        case spoofShellColor = "spoofShellColor"
 
         case todayWidgetUpdated = "todayWidgetUpdated"
     }

@@ -14,6 +14,8 @@ extension RemoteControlView {
     }
 
     struct ControlCircle: View {
+        @EnvironmentObject var theme: AppTheme
+
         var action: @MainActor (InputKey, Bool) -> Void
 
         var verticalSpacing: Double { 12 }
@@ -22,8 +24,12 @@ extension RemoteControlView {
         var contentPadding: Double { 14 }
 
         var body: some View {
-            Image("RemoteControlBackground")
-                .overlay {
+            ZStack {
+                Image("RemoteControlBackgroundAccent")
+                    .foregroundColor(theme.dpadAccent)
+                Image("RemoteControlBackgroundDetail")
+            }
+            .overlay {
                     VStack(spacing: verticalSpacing) {
                         HStack(spacing: horizontalSpacing) {
                             ControlButton(inputKey: .up) {
@@ -81,9 +87,15 @@ extension RemoteControlView {
             self.inputKey = inputKey
         }
 
+        @EnvironmentObject var theme: AppTheme
+
         var body: some View {
-            Image(image)
-                .rotationEffect(.degrees(rotation))
+            ZStack {
+                Image("\(image)Accent")
+                    .foregroundColor(theme.dpadAccent)
+                Image("\(image)Detail")
+            }
+            .rotationEffect(.degrees(rotation))
         }
     }
 
@@ -91,69 +103,104 @@ extension RemoteControlView {
         let inputKey: InputKey
         var action: (Bool) -> Void
 
+        @State private var longPressTask: Task<Void, Never>?
+        @State private var didFireLongPress = false
+
         var body: some View {
             Button {
             } label: {
                 ControlButtonImage(inputKey)
             }
-            .simultaneousGesture(
-                LongPressGesture()
-                    .onEnded { _ in
-                        action(true)
-                    }
-            )
             .highPriorityGesture(
-                TapGesture()
-                    .onEnded { _ in
-                        action(false)
-                    }
+                PressGesture.make(
+                    longPressTask: $longPressTask,
+                    didFireLongPress: $didFireLongPress,
+                    action: action)
             )
         }
     }
 
     struct ControlEnterButton: View {
+        @EnvironmentObject var theme: AppTheme
+
         var action: (Bool) -> Void
+
+        @State private var longPressTask: Task<Void, Never>?
+        @State private var didFireLongPress = false
 
         var body: some View {
             Button {
             } label: {
-                Image("RemoteControlEnter")
+                ZStack {
+                    Image("RemoteControlEnterAccent")
+                        .foregroundColor(theme.dpadAccent)
+                    Image("RemoteControlEnterDetail")
+                }
             }
-            .simultaneousGesture(
-                LongPressGesture()
-                    .onEnded { _ in
-                        action(true)
-                    }
-            )
             .highPriorityGesture(
-                TapGesture()
-                    .onEnded { _ in
-                        action(false)
-                    }
+                PressGesture.make(
+                    longPressTask: $longPressTask,
+                    didFireLongPress: $didFireLongPress,
+                    action: action)
             )
         }
     }
 
     struct ControlBackButton: View {
+        @EnvironmentObject var theme: AppTheme
+
         var action: (Bool) -> Void
+
+        @State private var longPressTask: Task<Void, Never>?
+        @State private var didFireLongPress = false
 
         var body: some View {
             Button {
             } label: {
-                Image("RemoteControlBack")
+                // Accent disc (template, tinted) under the original
+                // black outline + glyph so the detail stays visible.
+                ZStack {
+                    Image("RemoteControlBackAccent")
+                        .foregroundColor(theme.dpadAccent)
+                    Image("RemoteControlBackDetail")
+                }
             }
-            .simultaneousGesture(
-                LongPressGesture()
-                    .onEnded { _ in
-                        action(true)
-                    }
-            )
             .highPriorityGesture(
-                TapGesture()
-                    .onEnded { _ in
-                        action(false)
-                    }
+                PressGesture.make(
+                    longPressTask: $longPressTask,
+                    didFireLongPress: $didFireLongPress,
+                    action: action)
             )
         }
+    }
+}
+
+/// Fires immediately on touch-down/touch-up instead of waiting on
+/// `TapGesture`/`LongPressGesture` recognition, which measurably lags
+/// behind raw touch events for rapid D-Pad input.
+private enum PressGesture {
+    static func make(
+        longPressTask: Binding<Task<Void, Never>?>,
+        didFireLongPress: Binding<Bool>,
+        action: @escaping (Bool) -> Void
+    ) -> some Gesture {
+        DragGesture(minimumDistance: 0)
+            .onChanged { _ in
+                guard longPressTask.wrappedValue == nil else { return }
+                didFireLongPress.wrappedValue = false
+                longPressTask.wrappedValue = Task {
+                    try? await Task.sleep(nanoseconds: 500_000_000)
+                    guard !Task.isCancelled else { return }
+                    didFireLongPress.wrappedValue = true
+                    action(true)
+                }
+            }
+            .onEnded { _ in
+                longPressTask.wrappedValue?.cancel()
+                longPressTask.wrappedValue = nil
+                if !didFireLongPress.wrappedValue {
+                    action(false)
+                }
+            }
     }
 }

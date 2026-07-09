@@ -1,6 +1,8 @@
 import SwiftUI
 
 struct InstructionView: View {
+    @EnvironmentObject var theme: AppTheme
+
     var body: some View {
         VStack(spacing: 0) {
             Text(
@@ -15,9 +17,17 @@ struct InstructionView: View {
             Spacer()
 
             VStack(spacing: 8) {
-                Image("BluetoothSettings")
-                    .resizable()
-                    .scaledToFit()
+                ZStack {
+                    Image("BluetoothSettings")
+                        .resizable()
+                        .scaledToFit()
+
+                    Image("BluetoothSettingsAccent")
+                        .renderingMode(.template)
+                        .resizable()
+                        .scaledToFit()
+                        .foregroundColor(theme.accent)
+                }
 
                 Image("Breadcrumbs")
             }

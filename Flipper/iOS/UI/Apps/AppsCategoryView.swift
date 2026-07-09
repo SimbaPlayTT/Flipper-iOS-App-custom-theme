@@ -2,6 +2,7 @@ import Core
 import SwiftUI
 
 struct AppsCategoryView: View {
+    @EnvironmentObject var theme: AppTheme
     @EnvironmentObject var model: Applications
     @Environment(\.dismiss) var dismiss
 

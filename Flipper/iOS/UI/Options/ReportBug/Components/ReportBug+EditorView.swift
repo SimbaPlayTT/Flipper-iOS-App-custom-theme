@@ -2,6 +2,7 @@ import SwiftUI
 
 extension ReportBugView {
     struct EditorView: View {
+        @EnvironmentObject var theme: AppTheme
         @Environment(\.colorScheme) private var colorScheme
 
         let onSubmit: (Report) -> Void

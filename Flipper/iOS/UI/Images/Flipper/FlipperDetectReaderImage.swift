@@ -2,6 +2,8 @@ import SwiftUI
 import Peripheral
 
 struct FlipperDetectReaderImage: View {
+    @EnvironmentObject var theme: AppTheme
+
     var body: some View {
         ZStack {
             FlipperTemplate()
@@ -9,6 +11,12 @@ struct FlipperDetectReaderImage: View {
             Image("FZDetectReaderContent")
                 .resizable()
                 .scaledToFit()
+
+            Image("FZDetectReaderContentAccent")
+                .renderingMode(.template)
+                .resizable()
+                .scaledToFit()
+                .foregroundColor(theme.accent)
         }
     }
 }

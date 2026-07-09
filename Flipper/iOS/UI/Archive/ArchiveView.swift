@@ -5,6 +5,7 @@ import OrderedCollections
 import UniformTypeIdentifiers
 
 struct ArchiveView: View {
+    @EnvironmentObject var theme: AppTheme
     @EnvironmentObject var device: Device
     @EnvironmentObject var archive: ArchiveModel
     @EnvironmentObject var synchronization: Synchronization

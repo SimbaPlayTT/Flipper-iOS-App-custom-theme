@@ -4,6 +4,7 @@ import Catalog
 import SwiftUI
 
 struct HubView: View {
+    @EnvironmentObject var theme: AppTheme
     @AppStorage(.selectedTab) var selectedTab: TabView.Tab = .device
     @AppStorage(.hasReaderLog) var hasReaderLog = false
 

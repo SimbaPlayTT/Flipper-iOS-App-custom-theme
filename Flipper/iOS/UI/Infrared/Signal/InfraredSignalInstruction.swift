@@ -1,6 +1,8 @@
 import SwiftUI
 
 struct InfraredSignalInstruction: View {
+    @EnvironmentObject var theme: AppTheme
+
     @Environment(\.colorScheme) private var colorScheme
 
     private var titleColor: Color {
@@ -36,7 +38,12 @@ struct InfraredSignalInstruction: View {
                 .foregroundColor(titleColor)
                 .font(.system(size: 16, weight: .bold))
 
-                Image("InfraredHowToSignal")
+                ZStack {
+                    Image("InfraredHowToSignal")
+                    Image("InfraredHowToSignalAccent")
+                        .renderingMode(.template)
+                        .foregroundColor(theme.accent)
+                }
 
                 Text(
                     """

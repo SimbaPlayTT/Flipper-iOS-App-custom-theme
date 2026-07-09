@@ -1,6 +1,8 @@
 import SwiftUI
 
 struct InfraredHowToUseDialog: View {
+    @EnvironmentObject var theme: AppTheme
+
     @Environment(\.colorScheme) private var colorScheme
 
     @Binding var isPresented: Bool
@@ -27,8 +29,13 @@ struct InfraredHowToUseDialog: View {
 
     var body: some View {
         VStack(spacing: 24) {
-            Image(image)
-                .padding(.top, 16)
+            ZStack {
+                Image(image)
+                Image("\(image)Accent")
+                    .renderingMode(.template)
+                    .foregroundColor(theme.accent)
+            }
+            .padding(.top, 16)
 
             VStack(spacing: 4) {
                 Text("How to Use")

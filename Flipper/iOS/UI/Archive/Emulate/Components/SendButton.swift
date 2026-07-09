@@ -2,6 +2,7 @@ import SwiftUI
 
 extension EmulateView {
     struct SendButton: View {
+        @EnvironmentObject var theme: AppTheme
         let isEmulating: Bool
         let emulateDuration: Int
 

@@ -3,6 +3,7 @@ import SwiftUI
 import Notifications
 
 struct DeviceView: View {
+    @EnvironmentObject var theme: AppTheme
     @EnvironmentObject var router: Router
     @EnvironmentObject var central: Central
     @EnvironmentObject var device: Device
@@ -102,6 +103,7 @@ struct DeviceView: View {
                             } label: {
                                 RemoteControlCard()
                             }
+                            .disabled(!isDeviceAvailable)
                             .padding(.top, 24)
                             .padding(.horizontal, 14)
                         }

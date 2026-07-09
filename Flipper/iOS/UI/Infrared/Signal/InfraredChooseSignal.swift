@@ -4,6 +4,7 @@ import SwiftUI
 
 extension InfraredView {
     struct InfraredChooseSignal: View {
+        @EnvironmentObject var theme: AppTheme
         @EnvironmentObject private var emulate: Emulate
         @EnvironmentObject private var device: Device
         @EnvironmentObject private var infraredModel: InfraredModel

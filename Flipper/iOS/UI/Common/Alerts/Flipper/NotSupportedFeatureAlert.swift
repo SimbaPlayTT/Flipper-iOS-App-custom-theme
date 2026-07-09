@@ -1,6 +1,8 @@
 import SwiftUI
 
 struct NotSupportedFeatureAlert: View {
+    @EnvironmentObject var theme: AppTheme
+
     @Binding var isPresented: Bool
 
     @AppStorage(.selectedTab) var selectedTab: TabView.Tab = .device
@@ -8,6 +10,7 @@ struct NotSupportedFeatureAlert: View {
     var body: some View {
         VStack(spacing: 24) {
             Image("OutdatedFirmware")
+                .foregroundColor(theme.accent)
                 .padding(.top, 16)
 
             VStack(spacing: 4) {

@@ -3,6 +3,7 @@ import SwiftUI
 
 extension ArchiveView {
     struct CategoryView: View {
+        @EnvironmentObject var theme: AppTheme
         @EnvironmentObject var archive: ArchiveModel
         @EnvironmentObject private var device: Device
 

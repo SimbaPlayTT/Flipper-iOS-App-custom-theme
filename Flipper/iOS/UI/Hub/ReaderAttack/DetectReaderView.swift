@@ -4,6 +4,7 @@ import SwiftUI
 import enum Peripheral.FlipperColor
 
 struct DetectReaderView: View {
+    @EnvironmentObject var theme: AppTheme
     @EnvironmentObject private var device: Device
     @StateObject private var detectReader: DetectReader =
         Dependencies.shared.detectReader

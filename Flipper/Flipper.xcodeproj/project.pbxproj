@@ -683,7 +683,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 0;
-				DEVELOPMENT_TEAM = SXH69675TZ;
+				DEVELOPMENT_TEAM = 33XZ8FRGMC;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ActivityWidget/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = ActivityWidget;
@@ -695,7 +695,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 1.8.2;
-				PRODUCT_BUNDLE_IDENTIFIER = com.flipperdevices.main.LiveActivity;
+				PRODUCT_BUNDLE_IDENTIFIER = com.simba.flipperct.LiveActivity;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = iphoneos;
@@ -720,7 +720,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 0;
-				DEVELOPMENT_TEAM = SXH69675TZ;
+				DEVELOPMENT_TEAM = 33XZ8FRGMC;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ActivityWidget/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = ActivityWidget;
@@ -732,7 +732,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 1.8.2;
-				PRODUCT_BUNDLE_IDENTIFIER = com.flipperdevices.main.LiveActivity;
+				PRODUCT_BUNDLE_IDENTIFIER = com.simba.flipperct.LiveActivity;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = iphoneos;
@@ -759,7 +759,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 0;
-				DEVELOPMENT_TEAM = SXH69675TZ;
+				DEVELOPMENT_TEAM = 33XZ8FRGMC;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -775,7 +775,7 @@
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MARKETING_VERSION = 1.8.2;
-				PRODUCT_BUNDLE_IDENTIFIER = com.flipperdevices.main.LiveWidget;
+				PRODUCT_BUNDLE_IDENTIFIER = com.simba.flipperct.LiveWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -799,7 +799,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 0;
-				DEVELOPMENT_TEAM = SXH69675TZ;
+				DEVELOPMENT_TEAM = 33XZ8FRGMC;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -815,7 +815,7 @@
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MARKETING_VERSION = 1.8.2;
-				PRODUCT_BUNDLE_IDENTIFIER = com.flipperdevices.main.LiveWidget;
+				PRODUCT_BUNDLE_IDENTIFIER = com.simba.flipperct.LiveWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -834,7 +834,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 0;
-				DEVELOPMENT_TEAM = SXH69675TZ;
+				DEVELOPMENT_TEAM = 33XZ8FRGMC;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = KeyPreview/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = KeyPreview;
@@ -846,7 +846,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 1.8.2;
-				PRODUCT_BUNDLE_IDENTIFIER = com.flipperdevices.main.KeyPreview;
+				PRODUCT_BUNDLE_IDENTIFIER = com.simba.flipperct.KeyPreview;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -866,7 +866,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 0;
-				DEVELOPMENT_TEAM = SXH69675TZ;
+				DEVELOPMENT_TEAM = 33XZ8FRGMC;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = KeyPreview/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = KeyPreview;
@@ -878,7 +878,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 1.8.2;
-				PRODUCT_BUNDLE_IDENTIFIER = com.flipperdevices.main.KeyPreview;
+				PRODUCT_BUNDLE_IDENTIFIER = com.simba.flipperct.KeyPreview;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -1024,7 +1024,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 0;
-				DEVELOPMENT_TEAM = SXH69675TZ;
+				DEVELOPMENT_TEAM = 33XZ8FRGMC;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = iOS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
@@ -1033,7 +1033,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.8.2;
-				PRODUCT_BUNDLE_IDENTIFIER = com.flipperdevices.main;
+				PRODUCT_BUNDLE_IDENTIFIER = com.simba.flipperct;
 				PRODUCT_NAME = Flipper;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = iphoneos;
@@ -1055,7 +1055,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 0;
-				DEVELOPMENT_TEAM = SXH69675TZ;
+				DEVELOPMENT_TEAM = 33XZ8FRGMC;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = iOS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
@@ -1064,7 +1064,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.8.2;
-				PRODUCT_BUNDLE_IDENTIFIER = com.flipperdevices.main;
+				PRODUCT_BUNDLE_IDENTIFIER = com.simba.flipperct;
 				PRODUCT_NAME = Flipper;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = iphoneos;

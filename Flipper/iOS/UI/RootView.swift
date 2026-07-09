@@ -6,6 +6,7 @@ import SwiftUI
 public struct RootView: View {
     @StateObject var dependencies: Dependencies = .shared
     @StateObject var overlayController: OverlayController = .init()
+    @StateObject var theme: AppTheme = .shared
 
     public init() {}
 
@@ -24,6 +25,8 @@ public struct RootView: View {
             .environmentObject(dependencies.infraredModel)
             .environmentObject(Notifications.shared)
             .environmentObject(overlayController)
+            .environmentObject(theme)
+            .animation(.easeInOut(duration: 0.75), value: theme.state)
     }
 }
 

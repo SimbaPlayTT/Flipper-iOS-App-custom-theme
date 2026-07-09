@@ -2,6 +2,7 @@ import Core
 import SwiftUI
 
 struct LogView: View {
+    @EnvironmentObject var theme: AppTheme
     @EnvironmentObject var logs: Logs
     @Environment(\.dismiss) private var dismiss
 

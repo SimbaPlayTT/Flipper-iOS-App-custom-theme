@@ -90,9 +90,16 @@ extension DeviceUpdateCard {
     }
 
     struct CardNoDeviceError: View {
+        @EnvironmentObject var theme: AppTheme
+
         var body: some View {
             VStack(spacing: 2) {
-                Image("UpdateNoDevice")
+                ZStack {
+                    Image("UpdateNoDevice")
+                    Image("UpdateNoDeviceAccent")
+                        .renderingMode(.template)
+                        .foregroundColor(theme.accent)
+                }
                 Text("Connect to Flipper to see available updates")
                     .font(.system(size: 14, weight: .medium))
                     .multilineTextAlignment(.center)
