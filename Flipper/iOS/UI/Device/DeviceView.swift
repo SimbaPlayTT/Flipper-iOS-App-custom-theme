@@ -243,6 +243,18 @@ struct DeviceView: View {
             }
             suggestNotifications()
         }
+        .onReceive(device.$status) { status in
+            // Pre-warm the screen stream as soon as the device connects
+            // (rather than only once Remote Control is opened) so the
+            // BLE round trip for the first frame happens while the user
+            // is still looking at this screen, not after they tap in.
+            if status == .connected {
+                device.warmScreenStreaming()
+            }
+        }
+        .onDisappear {
+            device.stopScreenStreaming()
+        }
         .alert(isPresented: $showNotificationsAlert) {
             EnableNotificationsAlert(isPresented: $showNotificationsAlert) {
                 Task { await enableNotifications() }

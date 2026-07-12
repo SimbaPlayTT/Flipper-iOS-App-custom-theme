@@ -18,15 +18,15 @@ struct InstructionView: View {
 
             VStack(spacing: 8) {
                 ZStack {
-                    Image("BluetoothSettings")
-                        .resizable()
-                        .scaledToFit()
-
                     Image("BluetoothSettingsAccent")
                         .renderingMode(.template)
                         .resizable()
                         .scaledToFit()
                         .foregroundColor(theme.accent)
+
+                    Image("BluetoothSettings")
+                        .resizable()
+                        .scaledToFit()
                 }
 
                 Image("Breadcrumbs")

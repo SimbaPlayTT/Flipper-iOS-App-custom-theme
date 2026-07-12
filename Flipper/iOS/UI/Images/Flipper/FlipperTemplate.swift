@@ -32,21 +32,24 @@ struct FlipperTemplate: View {
     }
 
     var body: some View {
-        Image(imageName)
-            .resizable()
-            .scaledToFit()
-            .overlay {
-                // Redraws only the accent paths (bezel, mini D-pad,
-                // FLIPPER wordmark) in the custom accent color; the
-                // case color stays untouched. Disabled variants are
-                // gray and never accent-tinted.
-                if theme.state.isCustomAccentEnabled, state == .normal {
-                    Image("\(imageName)Accent")
-                        .renderingMode(.template)
-                        .resizable()
-                        .scaledToFit()
-                        .foregroundColor(theme.accent)
-                }
+        ZStack {
+            // Tinted shapes (bezel, mini D-pad, FLIPPER wordmark) sit
+            // underneath so the base image's black icon linework —
+            // drawn on top of these same shapes in the original art —
+            // stays visible instead of being buried by the opaque
+            // accent overlay. Disabled variants are gray and never
+            // accent-tinted.
+            if theme.state.isCustomAccentEnabled, state == .normal {
+                Image("\(imageName)Accent")
+                    .renderingMode(.template)
+                    .resizable()
+                    .scaledToFit()
+                    .foregroundColor(theme.accent)
             }
+
+            Image(imageName)
+                .resizable()
+                .scaledToFit()
+        }
     }
 }

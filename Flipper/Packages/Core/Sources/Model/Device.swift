@@ -221,6 +221,16 @@ public class Device: ObservableObject {
     }
 
     public func startScreenStreaming() {
+        warmScreenStreaming()
+        recordRemoteControl()
+    }
+
+    /// Requests the device start sending screen frames without
+    /// recording a "remote control opened" analytics event. Callers
+    /// that pre-warm the stream ahead of the user actually opening
+    /// Remote Control (so the first frame is already in flight by
+    /// the time they get there) should call this instead.
+    public func warmScreenStreaming() {
         Task {
             do {
                 try await gui.startStreaming()
@@ -228,7 +238,6 @@ public class Device: ObservableObject {
                 logger.error("start streaming: \(error)")
             }
         }
-        recordRemoteControl()
     }
 
     public func stopScreenStreaming() {
