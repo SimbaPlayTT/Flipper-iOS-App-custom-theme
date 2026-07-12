@@ -99,9 +99,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				8B1A482B29C113A6000169E9 /* ActivityWidget.appex in Embed Foundation Extensions */,
-				8B2F29922C1CD73500FEB48E /* LiveWidgetExtension.appex in Embed Foundation Extensions */,
-				8BCFDDEB277A2405002DA4CD /* KeyPreview.appex in Embed Foundation Extensions */,
 			);
 			name = "Embed Foundation Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -447,9 +444,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				8BCFDDEA277A2405002DA4CD /* PBXTargetDependency */,
-				8B1A482A29C113A6000169E9 /* PBXTargetDependency */,
-				8B2F29912C1CD73500FEB48E /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				6527C7FC2CF875A0000ABD05 /* iOS */,
