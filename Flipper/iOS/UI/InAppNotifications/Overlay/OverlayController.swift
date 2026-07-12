@@ -17,6 +17,7 @@ class OverlayController: ObservableObject {
         let viewController = UIHostingController(
             rootView: content()
                 .environmentObject(self)
+                .environmentObject(AppTheme.shared)
         )
         viewController.view.backgroundColor = .clear
 
