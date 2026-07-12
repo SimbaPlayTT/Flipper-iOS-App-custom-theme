@@ -3,11 +3,19 @@ import Foundation
 
 actor FileStorage {
     nonisolated var baseURL: URL {
-        // swiftlint:disable force_unwrapping
+        // Third-party/enterprise signing tools (Sideloadly, AltStore,
+        // KSign/ESign/Feather-style shared certs) frequently can't
+        // provision this app's App Group, since it isn't registered
+        // under their signing account. Falling back to the app's own
+        // container keeps the app usable (per-device storage instead
+        // of shared-with-extensions storage) instead of hard-crashing
+        // on every launch when the group container is unavailable.
         FileManager
             .default
-            .containerURL(forSecurityApplicationGroupIdentifier: .appGroup)!
-        // swiftlint:enable force_unwrapping
+            .containerURL(forSecurityApplicationGroupIdentifier: .appGroup)
+            ?? FileManager
+                .default
+                .urls(for: .documentDirectory, in: .userDomainMask)[0]
     }
 
     init() {}

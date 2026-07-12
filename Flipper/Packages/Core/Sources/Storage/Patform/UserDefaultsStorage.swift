@@ -83,7 +83,7 @@ public struct UserDefault<T> {
 
 public extension UserDefaults {
     static var group: UserDefaults {
-        .init(suiteName: "group.com.simba.flipperct")!
+        .init(suiteName: "group.com.simba.flipperct") ?? .standard
     }
 }
 
