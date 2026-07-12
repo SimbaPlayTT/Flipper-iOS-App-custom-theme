@@ -28,11 +28,25 @@ public class Notifications: NSObject, ObservableObject {
     }
 
     private func setup() {
-        FirebaseApp.configure()
-
-        Messaging.messaging().delegate = self
+        // GoogleService-Info.plist is registered to the upstream bundle id.
+        // Firebase hard-crashes at configure() if it doesn't match the
+        // running app's bundle id, which it won't for rebranded builds —
+        // skip it rather than take down the whole app on every launch.
+        if Self.firebaseBundleIDMatches {
+            FirebaseApp.configure()
+            Messaging.messaging().delegate = self
+        }
 
         UNUserNotificationCenter.current().delegate = self
+    }
+
+    private static var firebaseBundleIDMatches: Bool {
+        guard
+            let path = Bundle.main.path(forResource: "GoogleService-Info", ofType: "plist"),
+            let plist = NSDictionary(contentsOfFile: path),
+            let configuredBundleID = plist["BUNDLE_ID"] as? String
+        else { return false }
+        return configuredBundleID == Bundle.main.bundleIdentifier
     }
 
     public func enable() async throws {
@@ -66,13 +80,15 @@ public class Notifications: NSObject, ObservableObject {
     }
 
     public func disable() async {
-        do {
-            let messaging = Messaging.messaging()
-            if messaging.apnsToken != nil, messaging.fcmToken != nil {
-                try await messaging.deleteToken()
+        if Self.firebaseBundleIDMatches {
+            do {
+                let messaging = Messaging.messaging()
+                if messaging.apnsToken != nil, messaging.fcmToken != nil {
+                    try await messaging.deleteToken()
+                }
+            } catch {
+                logger.error("delete token: \(error)")
             }
-        } catch {
-            logger.error("delete token: \(error)")
         }
 
         UIApplication.shared.unregisterForRemoteNotifications()
