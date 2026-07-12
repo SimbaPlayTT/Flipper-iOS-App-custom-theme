@@ -7,8 +7,15 @@ public class CountlyAnalytics {
         #if !DEBUG
         guard let appKey = Bundle
             .main
-            .object(forInfoDictionaryKey: "COUNTLY_APP_KEY") as? String
+            .object(forInfoDictionaryKey: "COUNTLY_APP_KEY") as? String,
+            !appKey.isEmpty
         else {
+            // XC_COUNTLY_APP_KEY is an unset build setting for forks that
+            // don't have the upstream Countly project's key. Xcode
+            // substitutes it as an empty string rather than omitting the
+            // Info.plist key, so the nil check above alone doesn't catch
+            // it — and Countly's SDK throws an uncaught NSException (hard
+            // crash, not a Swift error) if started with an empty appKey.
             logger.error("countly: COUNTLY_APP_KEY not found")
             return
         }
